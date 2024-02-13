@@ -9,10 +9,16 @@ import SwiftUI
 
 struct signButton: View {
     @Binding var action : String
+    @Binding var email : String
+    @Binding var password : String
+    @StateObject var model = AuthViewModel()
     var title: String
+    
     var body: some View {
         Button {
-            print(action)
+            Task {
+                try await model.signIn(withEmail: email, password: password)
+            }
         } label: {
             HStack {
                 Text(title)
@@ -31,6 +37,6 @@ struct signButton: View {
 }
 
 #Preview {
-    signButton(action: .constant(""), title : "Sign In")
+    signButton(action: .constant(""), email: .constant(""), password: .constant(""), title: "Sign In")
 }
 

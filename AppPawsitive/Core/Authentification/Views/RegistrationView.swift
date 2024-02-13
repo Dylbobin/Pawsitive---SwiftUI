@@ -14,6 +14,7 @@ struct registrationView: View {
     @State private var confirmPassword = ""
     @State private var action = "Sign User Up..."
     @Environment(\.dismiss) var dismiss
+    @EnvironmentObject var viewModel : AuthViewModel
     
     var body: some View {
         VStack {
@@ -38,7 +39,24 @@ struct registrationView: View {
                 inputView(text: $confirmPassword, title: "Confirm Password", placeholder: "confirm password", isSecureField: true)
                 
                 // Sign Up
-                signButton(action: $action, title: "Sign Up")
+                Button {
+                    Task {
+                        try await viewModel.createUser(withEmail: email, password: password, fullName: fullName)
+                    }
+                } label: {
+                    HStack {
+                        Text("Sign Up")
+                            .fontWeight(.semibold)
+                        Image(systemName: "arrow.right.circle")
+                    }
+                    .foregroundColor(.white)
+                    // frame based on size of the screen
+                    .frame(width: UIScreen.main.bounds.width - 132, height: 48)
+                }
+                .background(Color(.systemMint))
+                //half of height to make fully rounded
+                .cornerRadius(24)
+                .padding(.top, 24)
                 
                 Spacer()
                 
