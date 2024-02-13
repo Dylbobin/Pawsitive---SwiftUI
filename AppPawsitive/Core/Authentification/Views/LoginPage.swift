@@ -11,7 +11,7 @@ struct LoginPage: View {
     @State private var email = ""
     @State private var password = ""
     @State private var action = "Log User In..."
-    
+    @EnvironmentObject var viewModel : AuthViewModel    
     var body: some View {
         NavigationStack {
             VStack {
@@ -36,7 +36,24 @@ struct LoginPage: View {
                 .padding(.top, 12)
                 
                 //sign in button: Created in components
-                signButton(action: $action, title: "Sign In")
+                Button {
+                    Task {
+                        try await viewModel.signIn(withEmail: email, password: password)
+                    }
+                } label: {
+                    HStack {
+                        Text("Sign In")
+                            .fontWeight(.semibold)
+                        Image(systemName: "arrow.right.circle")
+                    }
+                    .foregroundColor(.white)
+                    // frame based on size of the screen
+                    .frame(width: UIScreen.main.bounds.width - 132, height: 48)
+                }
+                .background(Color(.systemMint))
+                //half of height to make fully rounded
+                .cornerRadius(24)
+                .padding(.top, 24)
                 
                 Spacer()
                 //sign up button
