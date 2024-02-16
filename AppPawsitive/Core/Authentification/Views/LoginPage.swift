@@ -34,7 +34,7 @@ struct LoginPage: View {
                 }
                 .padding(.horizontal)
                 .padding(.top, 12)
-                
+            
                 //sign in button: Created in components
                 Button {
                     Task {
@@ -97,7 +97,15 @@ func containsNumber(_ str: String) -> Bool {
     return false
 }
 
-extension LoginPage : AuthenfificationFormProtocol {
+func containsLength(_ str: String) -> Bool {
+    if str.count > 8 {
+        return true
+    } else {
+        return false
+    }
+}
+
+extension LoginPage : AuthentificationFormProtocol {
     var validForm: Bool {
         // can update credentials, ensures users sign in with correct formula
         return !email.isEmpty
@@ -106,7 +114,7 @@ extension LoginPage : AuthenfificationFormProtocol {
         && !password.isEmpty
         && containsCapitalLetter(password)
         && containsNumber(password)
-        && password.count > 5
+        && containsLength(password)
     }
 }
 

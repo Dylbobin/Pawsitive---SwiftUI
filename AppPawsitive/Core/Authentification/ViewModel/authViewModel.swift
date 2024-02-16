@@ -10,8 +10,14 @@ import Firebase
 import FirebaseFirestoreSwift
 
 // protocol to have auth conform to protocol
-protocol AuthenfificationFormProtocol {
+protocol AuthentificationFormProtocol {
     var validForm : Bool { get }
+}
+
+protocol AuthentificationPasswordProtocol {
+    var yesUpper : Bool { get }
+    var yesNumber : Bool { get }
+    var yesLength : Bool { get }
 }
 
 // responsible for
@@ -100,8 +106,39 @@ class AuthViewModel : ObservableObject {
     }
     
     func deleteAccount() {
-        
+        // Get the current user
+        if let user = Auth.auth().currentUser {
+            // Delete the user's data from Firestore
+            Firestore.firestore().collection("users").document(user.uid).delete { error in
+                if let error = error {
+                    print("Error deleting account data from Firestore: \(error.localizedDescription)")
+                    return
+                }
+
+                // Delete the user from Firebase Authentication
+                user.delete { error in
+                    if let error = error {
+                        print("Error deleting account from Authentication: \(error.localizedDescription)")
+                        return
+                    }
+
+                    // Sign out the user
+                    do {
+                        try Auth.auth().signOut()
+                        DispatchQueue.main.async {
+                            self.userSession = nil
+                            self.currentUser = nil
+                            print("User signed out successfully after account deletion.")
+                        }
+                    } catch {
+                        print("Error signing out user: \(error.localizedDescription)")
+                    }
+                }
+            }
+        }
     }
+
+
     
     func fetchUser() async {
         // fetch from firebase firestore

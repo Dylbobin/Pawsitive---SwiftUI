@@ -77,7 +77,7 @@ struct profileView: View {
                             .foregroundColor(Color(.systemGray))
                     }
                     Button{
-                        print("Delete Account")
+                        viewModel.deleteAccount()
                     } label : {
                         settingsRowView(imageName: "x.circle", title: "Delete Account", tintColor: Color(.red))
                             .foregroundColor(Color(.systemGray))

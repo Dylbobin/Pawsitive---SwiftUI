@@ -54,6 +54,59 @@ struct registrationView: View {
                     }
                 }
                 
+                // password checkmarks
+                HStack(spacing: 10) {
+                    
+                    HStack(alignment: .firstTextBaseline){
+                        if !yesUpper {
+                            Image(systemName: "xmark")
+                                .foregroundColor(Color(.systemRed))
+                                .imageScale(.small)
+                        } else {
+                            Image(systemName: "checkmark")
+                                .foregroundColor(Color(.systemGreen))
+                                .imageScale(.small)
+                        }
+                        Text("Uppercase Letter")
+                            .font(Font.system(size: 12))
+                            .fontWeight(.semibold)
+                            .font(.subheadline)
+                            .foregroundColor(Color(.darkGray))
+                    }
+                    HStack(alignment: .firstTextBaseline) {
+                        if !yesNumber {
+                            Image(systemName: "xmark")
+                                .foregroundColor(Color(.systemRed))
+                                .imageScale(.small)
+                        } else {
+                            Image(systemName: "checkmark")
+                                .foregroundColor(Color(.systemGreen))
+                                .imageScale(.small)
+                        }
+                        Text("Number")
+                            .font(Font.system(size: 12))
+                            .fontWeight(.semibold)
+                            .font(.subheadline)
+                            .foregroundColor(Color(.darkGray))
+                    }
+                    HStack(alignment: .firstTextBaseline) {
+                        if !yesLength {
+                            Image(systemName: "xmark")
+                                .foregroundColor(Color(.systemRed))
+                                .imageScale(.small)
+                        } else {
+                            Image(systemName: "checkmark")
+                                .foregroundColor(Color(.systemGreen))
+                                .imageScale(.small)
+                        }
+                        Text("Length")
+                            .font(Font.system(size: 12))
+                            .fontWeight(.semibold)
+                            .font(.subheadline)
+                            .foregroundColor(Color(.darkGray))
+                    }
+                }
+                
                 // Sign Up
                 Button {
                     Task {
@@ -110,7 +163,7 @@ func containsSpace(_ str: String) -> Bool {
     return false
 }
 
-extension registrationView : AuthenfificationFormProtocol {
+extension registrationView : AuthentificationFormProtocol {
     var validForm: Bool {
         // can update credentials, ensures users sign in with correct formula
         return !email.isEmpty
@@ -119,10 +172,22 @@ extension registrationView : AuthenfificationFormProtocol {
         && !password.isEmpty
         && containsCapitalLetter(password)
         && containsNumber(password)
-        && password.count > 5
+        && containsLength(password)
         && !fullName.isEmpty
         && containsSpace(fullName)
         && password == confirmPassword
+    }
+}
+
+extension registrationView : AuthentificationPasswordProtocol {
+    var yesUpper: Bool {
+        containsCapitalLetter(password)
+    }
+    var yesNumber: Bool {
+        containsNumber(password)
+    }
+    var yesLength: Bool {
+        containsLength(password)
     }
 }
 

@@ -47,6 +47,7 @@
 		973FDBFD2B7B2E1C00EFD785 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 973FDBFC2B7B2E1C00EFD785 /* FirebaseStorage */; };
 		973FDBFF2B7B2E1C00EFD785 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 973FDBFE2B7B2E1C00EFD785 /* FirebaseStorageCombine-Community */; };
 		973FDC012B7B2E5A00EFD785 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 973FDC002B7B2E5A00EFD785 /* GoogleService-Info.plist */; };
+		9753C0662B7F302C00CFA486 /* passwordContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9753C0652B7F302C00CFA486 /* passwordContent.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +65,7 @@
 		973FDBC42B7B2A8300EFD785 /* signButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = signButton.swift; sourceTree = "<group>"; };
 		973FDBC72B7B2AD900EFD785 /* userData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = userData.swift; sourceTree = "<group>"; };
 		973FDC002B7B2E5A00EFD785 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		9753C0652B7F302C00CFA486 /* passwordContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = passwordContent.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -208,6 +210,7 @@
 				973FDBC02B7B2A4000EFD785 /* inputView.swift */,
 				973FDBC22B7B2A6100EFD785 /* settingsRowView.swift */,
 				973FDBC42B7B2A8300EFD785 /* signButton.swift */,
+				9753C0652B7F302C00CFA486 /* passwordContent.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -330,6 +333,7 @@
 				973FDBA22B7B283100EFD785 /* AppPawsitiveApp.swift in Sources */,
 				973FDBC32B7B2A6100EFD785 /* settingsRowView.swift in Sources */,
 				973FDBBD2B7B297600EFD785 /* RegistrationView.swift in Sources */,
+				9753C0662B7F302C00CFA486 /* passwordContent.swift in Sources */,
 				973FDBBB2B7B295400EFD785 /* LoginPage.swift in Sources */,
 				973FDBC82B7B2AD900EFD785 /* userData.swift in Sources */,
 				973FDBB32B7B289D00EFD785 /* profileView.swift in Sources */,
