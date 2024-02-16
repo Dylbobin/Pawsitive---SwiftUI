@@ -6,11 +6,17 @@
 //
 
 import SwiftUI
+import Firebase
 
 @main
 struct AppPawsitiveApp: App {
     // initialized here in order to work across all views
     @StateObject var viewModel = AuthViewModel()
+    
+    init() {
+        // need to configure when app launches
+        FirebaseApp.configure()
+    }
     
     var body: some Scene {
         WindowGroup {

@@ -36,7 +36,23 @@ struct registrationView: View {
                 }
                 // Secure field obscures values
                 inputView(text: $password, title: "Password", placeholder: "password", isSecureField: true)
-                inputView(text: $confirmPassword, title: "Confirm Password", placeholder: "confirm password", isSecureField: true)
+                
+                ZStack (alignment: .trailing){
+                    inputView(text: $confirmPassword, title: "Confirm Password", placeholder: "confirm password", isSecureField: true)
+                    if !password.isEmpty && !confirmPassword.isEmpty {
+                        if password == confirmPassword {
+                            Image(systemName: "checkmark.circle.fill")
+                                .imageScale(.large)
+                                .fontWeight(.bold)
+                                .foregroundColor(Color(.systemGreen))
+                                                 } else {
+                                    Image(systemName: "xmark.circle.fill")
+                                                         .imageScale(.large)
+                                                         .fontWeight(.bold)
+                                        .foregroundColor(Color(.systemRed))
+                                }
+                    }
+                }
                 
                 // Sign Up
                 Button {
@@ -54,6 +70,9 @@ struct registrationView: View {
                     .frame(width: UIScreen.main.bounds.width - 132, height: 48)
                 }
                 .background(Color(.systemMint))
+                // diable if credentials are not met
+                .disabled(!validForm)
+                .opacity(validForm ? 1.0 : 0.5)
                 //half of height to make fully rounded
                 .cornerRadius(24)
                 .padding(.top, 24)
@@ -79,6 +98,31 @@ struct registrationView: View {
             .padding(.horizontal)
             
         }
+    }
+}
+
+func containsSpace(_ str: String) -> Bool {
+    for char in str {
+        if char == (" ") {
+            return true
+        }
+    }
+    return false
+}
+
+extension registrationView : AuthenfificationFormProtocol {
+    var validForm: Bool {
+        // can update credentials, ensures users sign in with correct formula
+        return !email.isEmpty
+        && email.contains("@")
+        && email.contains(".")
+        && !password.isEmpty
+        && containsCapitalLetter(password)
+        && containsNumber(password)
+        && password.count > 5
+        && !fullName.isEmpty
+        && containsSpace(fullName)
+        && password == confirmPassword
     }
 }
 

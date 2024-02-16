@@ -12,6 +12,7 @@ struct ContentView: View {
     
     var body: some View {
         Group {
+            // listen for cnanges form authViewModel
             if viewModel.userSession == nil {
                 LoginPage()
             } else {

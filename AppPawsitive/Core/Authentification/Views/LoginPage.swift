@@ -51,6 +51,9 @@ struct LoginPage: View {
                     .frame(width: UIScreen.main.bounds.width - 132, height: 48)
                 }
                 .background(Color(.systemMint))
+                // diable if credentials are not met
+                .disabled(!validForm)
+                .opacity(validForm ? 1.0 : 0.5)
                 //half of height to make fully rounded
                 .cornerRadius(24)
                 .padding(.top, 24)
@@ -73,6 +76,37 @@ struct LoginPage: View {
                 }
             }
         }
+    }
+}
+
+func containsCapitalLetter(_ str: String) -> Bool {
+    for char in str {
+        if char.isUppercase {
+            return true
+        }
+    }
+    return false
+}
+
+func containsNumber(_ str: String) -> Bool {
+    for char in str {
+        if char.isNumber {
+            return true
+        }
+    }
+    return false
+}
+
+extension LoginPage : AuthenfificationFormProtocol {
+    var validForm: Bool {
+        // can update credentials, ensures users sign in with correct formula
+        return !email.isEmpty
+        && email.contains("@")
+        && email.contains(".")
+        && !password.isEmpty
+        && containsCapitalLetter(password)
+        && containsNumber(password)
+        && password.count > 5
     }
 }
 
