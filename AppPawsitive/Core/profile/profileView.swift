@@ -11,6 +11,7 @@ struct profileView: View {
     @EnvironmentObject var viewModel : AuthViewModel
     @State private var imageTitle = ""
     @State private var joinDate = "05-22-2002"
+    @State private var showingDeleteAlert : Bool = false
     
     var body: some View {
         /* Want to include an image at the top
@@ -77,10 +78,17 @@ struct profileView: View {
                             .foregroundColor(Color(.systemGray))
                     }
                     Button{
-                        viewModel.deleteAccount()
+                        // account deletion alert
+                        showingDeleteAlert = true
                     } label : {
                         settingsRowView(imageName: "x.circle", title: "Delete Account", tintColor: Color(.red))
                             .foregroundColor(Color(.systemGray))
+                    }
+                    .alert("Are you certain you wish to delete your account? This action is irreversible.", isPresented: $showingDeleteAlert) {
+                        Button("Delete", role: .destructive) {
+                            viewModel.deleteAccount()
+                        }
+                        Button("Cancel", role: .cancel) { }
                     }
                 }
             }
