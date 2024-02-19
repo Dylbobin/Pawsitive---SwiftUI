@@ -51,7 +51,7 @@ class AuthViewModel : ObservableObject {
     
     // async/await fucntionality
     // network better using this
-    func signIn(withEmail email : String, password : String) async throws {
+    func signIn(withEmail email : String, password : String) async throws -> Bool {
         do {
             let result = try await Auth.auth().signIn(withEmail: email, password: password)
             self.userSession = result.user
@@ -60,10 +60,12 @@ class AuthViewModel : ObservableObject {
             await fetchUser()
         } catch {
             print("ERROR: failed to login with error \(error.localizedDescription)")
+            return true
         }
+        return false
     }
     
-    func createUser(withEmail email : String, password : String, fullName : String) async throws {
+    func createUser(withEmail email : String, password : String, fullName : String) async throws -> Bool {
         do {
             // completion handlers can be challenging
             // allows us to await the result from firebase
@@ -89,8 +91,9 @@ class AuthViewModel : ObservableObject {
             await fetchUser()
         } catch {
             print("ERROR: Failed to create user with error \(error.localizedDescription)")
+            return true
         }
-        
+        return false
     }
     
     func signOut() {

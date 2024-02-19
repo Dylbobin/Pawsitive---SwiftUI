@@ -11,7 +11,8 @@ struct LoginPage: View {
     @State private var email = ""
     @State private var password = ""
     @State private var action = "Log User In..."
-    @EnvironmentObject var viewModel : AuthViewModel    
+    @State var signInError : Bool = false
+    @EnvironmentObject var viewModel : AuthViewModel
     var body: some View {
         NavigationStack {
             VStack {
@@ -38,7 +39,7 @@ struct LoginPage: View {
                 //sign in button: Created in components
                 Button {
                     Task {
-                        try await viewModel.signIn(withEmail: email, password: password)
+                        signInError = try await viewModel.signIn(withEmail: email, password: password)
                     }
                 } label: {
                     HStack {
@@ -57,6 +58,11 @@ struct LoginPage: View {
                 //half of height to make fully rounded
                 .cornerRadius(24)
                 .padding(.top, 24)
+                
+                if signInError {
+                    Text("Username or password was incorrect")
+                        .foregroundColor(Color(.systemRed))
+                }
                 
                 Spacer()
                 //sign up button
@@ -98,7 +104,7 @@ func containsNumber(_ str: String) -> Bool {
 }
 
 func containsLength(_ str: String) -> Bool {
-    if str.count > 8 {
+    if str.count > 7 {
         return true
     } else {
         return false

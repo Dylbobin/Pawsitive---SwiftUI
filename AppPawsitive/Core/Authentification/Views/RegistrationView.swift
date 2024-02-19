@@ -13,6 +13,8 @@ struct registrationView: View {
     @State private var password = ""
     @State private var confirmPassword = ""
     @State private var action = "Sign User Up..."
+    @State private var signUpError = false
+    
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var viewModel : AuthViewModel
     
@@ -99,7 +101,7 @@ struct registrationView: View {
                                 .foregroundColor(Color(.systemGreen))
                                 .imageScale(.small)
                         }
-                        Text("Length")
+                        Text("Length 8 Characters")
                             .font(Font.system(size: 12))
                             .fontWeight(.semibold)
                             .font(.subheadline)
@@ -110,7 +112,7 @@ struct registrationView: View {
                 // Sign Up
                 Button {
                     Task {
-                        try await viewModel.createUser(withEmail: email, password: password, fullName: fullName)
+                        signUpError = try await viewModel.createUser(withEmail: email, password: password, fullName: fullName)
                     }
                 } label: {
                     HStack {
@@ -129,6 +131,11 @@ struct registrationView: View {
                 //half of height to make fully rounded
                 .cornerRadius(24)
                 .padding(.top, 24)
+                
+                if signUpError {
+                    Text("User already exists")
+                        .foregroundColor(Color(.systemRed))
+                }
                 
                 Spacer()
                 
