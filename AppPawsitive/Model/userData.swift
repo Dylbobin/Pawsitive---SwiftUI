@@ -26,6 +26,19 @@ struct User : Identifiable, Codable {
         // could possibly return a blank image here
         return ""
     }
+    
+    var firstName: String {
+        // split name by spaces
+        let components = fullName.split(separator: " ")
+        
+        // first component as the first name
+        if let firstName = components.first {
+            return String(firstName)
+        }
+        
+        // If there is no first name, return an empty string
+        return ""
+    }
 }
 
 extension User {

@@ -16,7 +16,7 @@ struct ContentView: View {
             if viewModel.userSession == nil {
                 LoginPage()
             } else {
-                profileView()
+                NavigatorView()
             }
         }
     }

@@ -92,7 +92,7 @@ struct profileView: View {
                     }
                 }
             }
-    }
+        }
     }
 }
 #Preview {
