@@ -17,6 +17,7 @@ struct petSelector: View {
                     .fontWeight(.semibold)
                     .padding(30)
                     .foregroundColor(.white)
+                    .font(Font.system(size: 12))
                     .clipped()
                 
                 Spacer()

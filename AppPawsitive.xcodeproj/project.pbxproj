@@ -53,6 +53,7 @@
 		9753C0662B7F302C00CFA486 /* passwordContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9753C0652B7F302C00CFA486 /* passwordContent.swift */; };
 		9763947A2B8AAED1003EF2BC /* navigationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976394792B8AAED1003EF2BC /* navigationButton.swift */; };
 		9763947C2B8ABE68003EF2BC /* petSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9763947B2B8ABE68003EF2BC /* petSelector.swift */; };
+		97DB6A792B95975900544DFB /* locationDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DB6A782B95975900544DFB /* locationDetails.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +77,7 @@
 		9753C0652B7F302C00CFA486 /* passwordContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = passwordContent.swift; sourceTree = "<group>"; };
 		976394792B8AAED1003EF2BC /* navigationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = navigationButton.swift; sourceTree = "<group>"; };
 		9763947B2B8ABE68003EF2BC /* petSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = petSelector.swift; sourceTree = "<group>"; };
+		97DB6A782B95975900544DFB /* locationDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = locationDetails.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -250,6 +252,7 @@
 				9753C0652B7F302C00CFA486 /* passwordContent.swift */,
 				976394792B8AAED1003EF2BC /* navigationButton.swift */,
 				9763947B2B8ABE68003EF2BC /* petSelector.swift */,
+				97DB6A782B95975900544DFB /* locationDetails.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -368,6 +371,7 @@
 				973FDBC52B7B2A8300EFD785 /* signButton.swift in Sources */,
 				973FDBC12B7B2A4000EFD785 /* inputView.swift in Sources */,
 				973FDBB82B7B292C00EFD785 /* authViewModel.swift in Sources */,
+				97DB6A792B95975900544DFB /* locationDetails.swift in Sources */,
 				973FDBA42B7B283200EFD785 /* ContentView.swift in Sources */,
 				973FDBA22B7B283100EFD785 /* AppPawsitiveApp.swift in Sources */,
 				973FDBC32B7B2A6100EFD785 /* settingsRowView.swift in Sources */,
@@ -516,6 +520,8 @@
 				DEVELOPMENT_ASSET_PATHS = "\"AppPawsitive/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -544,6 +550,8 @@
 				DEVELOPMENT_ASSET_PATHS = "\"AppPawsitive/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
