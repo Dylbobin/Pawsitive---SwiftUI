@@ -79,6 +79,7 @@ struct locationDetails: View {
                     }
                 }
             }
+                
         }
         .onAppear {
             // when details appear, fetch the preview

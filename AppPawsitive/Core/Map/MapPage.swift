@@ -10,7 +10,7 @@ import MapKit
 
 struct MapPage: View {
     // custom zoom on user region
-    @State private var cameraPosition : MapCameraPosition = .region(.userRegion)
+    @State private var cameraPosition : MapCameraPosition = .userLocation(fallback: .automatic)
     @State private var searchText : String = ""
     @State private var results = [MKMapItem]()
     @State private var itemSelectionMap : MKMapItem?
@@ -20,9 +20,10 @@ struct MapPage: View {
         // can make custom views with annotation
         // allow items to display selected itemon map with seletion
         Map(position: $cameraPosition, selection: $itemSelectionMap) {
-            Marker("My location", systemImage: "person.circle", coordinate: .userLocation)
+/*
+            Marker("My location", systemImage: "person.circle", coordinate: .userLocation.)
                 .tint(.blue)
-            
+*/
             // loop through the results array
             ForEach(results, id: \.self) { item in
                 // for each item
@@ -49,8 +50,12 @@ struct MapPage: View {
             }
             
         }
+        .onAppear {
+            // prompt user to accept location
+            CLLocationManager().requestWhenInUseAuthorization()
+        }
         .onSubmit(of: /*@START_MENU_TOKEN@*/.text/*@END_MENU_TOKEN@*/) {
-            // when code is submitted
+            // when location is submitted
             Task { await searchLocation() }
         }
         // adds a look around functionality
@@ -78,17 +83,25 @@ struct MapPage: View {
     }
 }
 
-// sets user location to miami
-extension CLLocationCoordinate2D {
-    static var userLocation : CLLocationCoordinate2D {
-        return .init(latitude: 25.7602, longitude: -80.1959)
-    }
-}
+
+// sets user location to user Loaction
+ extension CLLocationManager {
+     static var userLocation: CLLocationManager {
+         let manager = CLLocationManager()
+         manager.requestWhenInUseAuthorization()
+         return manager
+     }
+ }
 
 //sets the user range for a zoom
 extension MKCoordinateRegion {
-    static var userRegion : MKCoordinateRegion {
-        return .init(center: .userLocation, latitudinalMeters: 5000, longitudinalMeters: 5000)
+    static var userRegion: MKCoordinateRegion {
+        guard let userLocation = CLLocationManager().location else {
+            // Default region if user location is not available
+            return MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0), latitudinalMeters: 10000, longitudinalMeters: 10000)
+        }
+
+        return MKCoordinateRegion(center: userLocation.coordinate, latitudinalMeters: 5000, longitudinalMeters: 5000)
     }
 }
 
@@ -96,14 +109,15 @@ extension MapPage {
     func searchLocation() async {
         let searchLocation = MKLocalSearch.Request()
         searchLocation.naturalLanguageQuery = searchText
-        // set region for requests
-        searchLocation.region = .userRegion
         
+        // set the region for the search request
+        searchLocation.region = MKCoordinateRegion.userRegion
         
+        // Perform the search request
         // store results in an array
         let results = try? await MKLocalSearch(request: searchLocation).start()
         self.results = results?.mapItems ?? [ ]
-        
+        //return results
     }
 }
 
