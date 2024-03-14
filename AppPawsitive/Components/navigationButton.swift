@@ -12,11 +12,23 @@ struct navigationButton: View {
     let title : String
     let imageLead : CGFloat
     let textTrail : CGFloat
+    let tabIndex: Int = 1
+    @Binding var selection : Int
+    
+    init(imageName: String, title: String, imageLead: CGFloat, textTrail: CGFloat, selection: Binding<Int>) {
+        self.imageName = imageName
+        self.title = title
+        self.imageLead = imageLead
+        self.textTrail = textTrail
+        self._selection = selection
+    }
     
     var body: some View {
         ZStack {
             Button {
                 print("Navigating user to ____ Screen")
+                selection = tabIndex
+                print(selection)
             } label: {
                 VStack(alignment: .leading) {
                     Text(title)
@@ -39,7 +51,9 @@ struct navigationButton: View {
         .cornerRadius(20)
     }
 }
-
-#Preview {
-    navigationButton(imageName: "square.fill", title: "Dog Parks", imageLead : 90, textTrail: 20)
-}
+/*
+ #Preview {
+ let selection = Binding.constant(1)
+ navigationButton(imageName: "square.fill", title: "Dog Parks", imageLead : 90, textTrail: 20, selection: selection)
+ }
+ */

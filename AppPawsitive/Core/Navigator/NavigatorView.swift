@@ -8,13 +8,14 @@
 import SwiftUI
 
 struct NavigatorView: View {
-    @State private var selection = 0
+    @State var selection = 0
+    
     var body: some View {
         TabView(selection: $selection) {
             // what page looks liike
             // added another view to work on this HomePage screen
             // shows the home page screen, cleans up code
-            HomePage()
+            HomePage(selection: $selection)
                 .font(.title)
             // what icon on bottom looks like
                 .tabItem {
@@ -47,8 +48,8 @@ struct NavigatorView: View {
     }
 }
 
-/*
 #Preview {
     NavigatorView()
 }
-*/
+
+

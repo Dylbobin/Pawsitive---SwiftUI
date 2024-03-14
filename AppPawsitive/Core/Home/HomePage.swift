@@ -9,6 +9,7 @@ import SwiftUI
 
 struct HomePage: View {
     @EnvironmentObject var viewModel : AuthViewModel
+    @Binding var selection : Int
     
     var body: some View {
         //if let user = viewModel.currentUser {
@@ -44,8 +45,8 @@ struct HomePage: View {
                     petSelector()
                         .padding(.bottom, 10)
                     HStack(spacing: 20) {
-                        navigationButton(imageName: "cross.case.fill", title: "Hospital", imageLead: 90, textTrail: 20)
-                        navigationButton(imageName: "dog.fill", title: "Dog Park", imageLead: 90, textTrail: 20)
+                        navigationButton(imageName: "cross.case.fill", title: "Hospital", imageLead: 90, textTrail: 20, selection: $selection)
+                        navigationButton(imageName: "dog.fill", title: "Dog Park", imageLead: 90, textTrail: 20,  selection: $selection)
                     }
                     /*
                     HStack(spacing: 20) {
@@ -54,8 +55,8 @@ struct HomePage: View {
                     }
                      */
                     HStack(spacing: 20) {
-                        navigationButton(imageName: "storefront.fill", title: "Store", imageLead: 90, textTrail: 20)
-                        navigationButton(imageName: "timelapse", title: "All", imageLead: 90, textTrail: 20)
+                        navigationButton(imageName: "storefront.fill", title: "Store", imageLead: 90, textTrail: 20,  selection: $selection)
+                        navigationButton(imageName: "timelapse", title: "All", imageLead: 90, textTrail: 20,  selection: $selection)
                     }
                     Spacer()
                 }
@@ -63,8 +64,9 @@ struct HomePage: View {
         //}
     }
 }
-
+/*
 #Preview {
     //HomePage().environmentObject(AuthViewModel())
-    HomePage()
+    HomePage(selection: selection)
 }
+*/
