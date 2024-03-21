@@ -53,6 +53,7 @@
 		9753C0662B7F302C00CFA486 /* passwordContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9753C0652B7F302C00CFA486 /* passwordContent.swift */; };
 		9763947A2B8AAED1003EF2BC /* navigationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976394792B8AAED1003EF2BC /* navigationButton.swift */; };
 		9763947C2B8ABE68003EF2BC /* petSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9763947B2B8ABE68003EF2BC /* petSelector.swift */; };
+		97CB75BD2BA9348A00383ED0 /* CharisSIL-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 97CB75BC2BA9348A00383ED0 /* CharisSIL-Regular.ttf */; };
 		97DB6A792B95975900544DFB /* locationDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DB6A782B95975900544DFB /* locationDetails.swift */; };
 /* End PBXBuildFile section */
 
@@ -77,6 +78,8 @@
 		9753C0652B7F302C00CFA486 /* passwordContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = passwordContent.swift; sourceTree = "<group>"; };
 		976394792B8AAED1003EF2BC /* navigationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = navigationButton.swift; sourceTree = "<group>"; };
 		9763947B2B8ABE68003EF2BC /* petSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = petSelector.swift; sourceTree = "<group>"; };
+		97CB75BC2BA9348A00383ED0 /* CharisSIL-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CharisSIL-Regular.ttf"; sourceTree = "<group>"; };
+		97CB75BE2BA934C000383ED0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		97DB6A782B95975900544DFB /* locationDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = locationDetails.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -161,12 +164,14 @@
 		973FDBA02B7B283100EFD785 /* AppPawsitive */ = {
 			isa = PBXGroup;
 			children = (
+				97CB75BE2BA934C000383ED0 /* Info.plist */,
 				973FDBC62B7B2AAE00EFD785 /* Model */,
 				973FDBAF2B7B284E00EFD785 /* App */,
 				973FDBBF2B7B2A1F00EFD785 /* Components */,
 				973FDBB62B7B290800EFD785 /* Core */,
 				973FDC002B7B2E5A00EFD785 /* GoogleService-Info.plist */,
 				973FDBA52B7B283300EFD785 /* Assets.xcassets */,
+				97CB75BC2BA9348A00383ED0 /* CharisSIL-Regular.ttf */,
 				973FDBA72B7B283300EFD785 /* Preview Content */,
 			);
 			path = AppPawsitive;
@@ -357,6 +362,7 @@
 			files = (
 				973FDBA92B7B283300EFD785 /* Preview Assets.xcassets in Resources */,
 				973FDBA62B7B283300EFD785 /* Assets.xcassets in Resources */,
+				97CB75BD2BA9348A00383ED0 /* CharisSIL-Regular.ttf in Resources */,
 				973FDC012B7B2E5A00EFD785 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -520,6 +526,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"AppPawsitive/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AppPawsitive/Info.plist;
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -550,6 +557,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"AppPawsitive/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AppPawsitive/Info.plist;
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
