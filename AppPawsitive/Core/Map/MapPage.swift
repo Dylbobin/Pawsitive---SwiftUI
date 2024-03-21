@@ -15,6 +15,8 @@ struct MapPage: View {
     @State private var results = [MKMapItem]()
     @State private var itemSelectionMap : MKMapItem?
     @State private var showDetails : Bool = false
+    @State private var tintColor : Color = Color.red
+    @Binding var searchItem : String
     
     var body : some View {
         // can make custom views with annotation
@@ -23,6 +25,7 @@ struct MapPage: View {
 /*
             Marker("My location", systemImage: "person.circle", coordinate: .userLocation.)
                 .tint(.blue)
+
 */
             // loop through the results array
             ForEach(results, id: \.self) { item in
@@ -30,25 +33,33 @@ struct MapPage: View {
                 // let location mark be the item placemark
                 let locationMark = item.placemark
                 // set marker of the name and coordinat
-                Marker(locationMark.name ?? "", coordinate: locationMark.coordinate)
+                let imageTitle = setMarker()
+                Marker(locationMark.name ?? "", systemImage: imageTitle, coordinate: locationMark.coordinate)
+                    .tint(tintColor)
                 
             }
         }
         .overlay(alignment: .top) {
             // add a search bar
             GeometryReader { geometry in
-                TextField("Search for location...", text: $searchText)
-                    .font(.subheadline)
-                    .padding(12)
-                //.tint(Color.gray)
-                    .foregroundStyle(.gray,(Color(.black)))
-                    .background(.white)
-                    .opacity(0.85)
-                    .padding()
-                    .shadow(radius: 10)
-                    .frame(width: geometry.size.width - 50)
-            }
-            
+                // if searchItem is not empty, search for search item, if not, use search text
+                    TextField("Search for location...", text: searchItem != "" ? $searchItem : $searchText)
+                        .font(.subheadline)
+                        .padding(12)
+                        .foregroundStyle(.gray, Color.black)
+                        .background(Color.white)
+                        .opacity(0.85)
+                        .padding()
+                        .shadow(radius: 10)
+                        .frame(width: geometry.size.width - 50)
+                        .onAppear() {
+                            Task() { await searchLocation()}
+                        }
+                        .onChange(of: searchText) {
+                            // reset after search
+                            searchItem = ""
+                        }
+                }
         }
         .onAppear {
             // prompt user to accept location
@@ -79,7 +90,7 @@ struct MapPage: View {
             MapPitchToggle()
             MapUserLocationButton()
         }
-        
+        .background(LinearGradient(gradient: Gradient(colors: [.blue, .gray, .white]), startPoint: .topLeading, endPoint: .bottomTrailing))
     }
 }
 
@@ -108,7 +119,13 @@ extension MKCoordinateRegion {
 extension MapPage {
     func searchLocation() async {
         let searchLocation = MKLocalSearch.Request()
-        searchLocation.naturalLanguageQuery = searchText
+        // added for when user clicks a button
+        // checks which to run
+        if searchItem != ""{
+            searchLocation.naturalLanguageQuery = searchItem
+        } else {
+            searchLocation.naturalLanguageQuery = searchText
+        }
         
         // set the region for the search request
         searchLocation.region = MKCoordinateRegion.userRegion
@@ -117,10 +134,42 @@ extension MapPage {
         // store results in an array
         let results = try? await MKLocalSearch(request: searchLocation).start()
         self.results = results?.mapItems ?? [ ]
+        
         //return results
     }
 }
 
-#Preview {
-    MapPage()
+extension MapPage {
+    func setMarker() -> String{
+        let currentSearch = searchItem != "" ? searchItem : searchText
+        
+        var imageTitle = ""
+        
+        switch String(currentSearch) {
+        case "Pet Hospitals":
+            imageTitle = "cross.case.circle"
+            tintColor = Color.red
+        case "Dog Parks":
+            imageTitle = "tree.circle"
+            tintColor = Color.green
+        case "Pet Stores":
+            imageTitle = "Pet Stores"
+            tintColor = Color.white
+        case "All":
+            imageTitle = "ALL"
+            tintColor = Color.yellow
+        default:
+            imageTitle = ""
+            tintColor = Color.red
+        }
+        return imageTitle
+    }
 }
+
+#Preview {
+    MapPage(searchItem: Binding.constant(""))
+}
+
+
+
+

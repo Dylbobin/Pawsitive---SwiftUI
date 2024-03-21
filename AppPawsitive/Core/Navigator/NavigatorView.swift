@@ -8,13 +8,16 @@
 import SwiftUI
 
 struct NavigatorView: View {
-    @State private var selection = 0
+    @State var selection = 0
+    @State var searchItem = ""
+    
     var body: some View {
         TabView(selection: $selection) {
+            
             // what page looks liike
             // added another view to work on this HomePage screen
             // shows the home page screen, cleans up code
-            HomePage()
+            HomePage(selection: $selection, searchItem: $searchItem)
                 .font(.title)
             // what icon on bottom looks like
                 .tabItem {
@@ -25,7 +28,7 @@ struct NavigatorView: View {
                 }
                 .tag(0)
             //This will follow suit of the first page, more specific comments can and will be added if need
-            MapPage()
+            MapPage(searchItem: $searchItem)
                 .font(.title)
                 .tabItem {
                     VStack {
@@ -44,11 +47,13 @@ struct NavigatorView: View {
                 }
                 .tag(2)
         }
+        .border(Color.clear, width: 0)
     }
 }
-
 /*
 #Preview {
-    NavigatorView()
+    let searchItem = Binding.constant("")
+    NavigatorView(searchItem: searchItem)
 }
 */
+

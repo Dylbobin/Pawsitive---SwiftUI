@@ -41,7 +41,7 @@ struct petSelector: View {
             .frame(width: UIScreen.main.bounds.width - 64, height: 48) // Adjust the frame width
             
             //.background(Color(red: 185/255, green: 183/255, blue: 196/255))
-            .background(Color(red: 149/255.0, green: 146/255.0, blue: 166/255.0))
+            .background(Color(red: 75/255.0, green: 200/255.0, blue: 135/255.0))
             .cornerRadius(24)
             .padding(.top, 24)
         }
