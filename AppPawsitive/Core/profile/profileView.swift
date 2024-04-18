@@ -12,6 +12,7 @@ struct profileView: View {
     @State private var imageTitle = ""
     @State private var joinDate = "05-22-2002"
     @State private var showingDeleteAlert : Bool = false
+    @Binding var showProfile : Bool
     
     var body: some View {
         /* Want to include an image at the top
@@ -24,6 +25,13 @@ struct profileView: View {
          */
         if let user = viewModel.currentUser {
             List() {
+                Section {
+                    Button {
+                        showProfile = false
+                    } label: {
+                        Text("Back to Home")
+                    }
+                }
                 Section("Profile") {
                     HStack {
                         /*
@@ -97,7 +105,7 @@ struct profileView: View {
     
 }
 #Preview {
-    profileView()
+    profileView(showProfile: .constant(false))
         .environmentObject(AuthViewModel())
 }
 

@@ -54,7 +54,10 @@
 		9763947A2B8AAED1003EF2BC /* navigationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976394792B8AAED1003EF2BC /* navigationButton.swift */; };
 		9763947C2B8ABE68003EF2BC /* petSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9763947B2B8ABE68003EF2BC /* petSelector.swift */; };
 		97CB75BD2BA9348A00383ED0 /* CharisSIL-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 97CB75BC2BA9348A00383ED0 /* CharisSIL-Regular.ttf */; };
+		97CBADE32BACC7410094555C /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97CBADE22BACC7410094555C /* MenuView.swift */; };
 		97DB6A792B95975900544DFB /* locationDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DB6A782B95975900544DFB /* locationDetails.swift */; };
+		97FB6A352BD06338005E2012 /* mainProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97FB6A342BD06338005E2012 /* mainProfileView.swift */; };
+		97FB6A392BD07214005E2012 /* petView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97FB6A382BD07214005E2012 /* petView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -80,7 +83,10 @@
 		9763947B2B8ABE68003EF2BC /* petSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = petSelector.swift; sourceTree = "<group>"; };
 		97CB75BC2BA9348A00383ED0 /* CharisSIL-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CharisSIL-Regular.ttf"; sourceTree = "<group>"; };
 		97CB75BE2BA934C000383ED0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		97CBADE22BACC7410094555C /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		97DB6A782B95975900544DFB /* locationDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = locationDetails.swift; sourceTree = "<group>"; };
+		97FB6A342BD06338005E2012 /* mainProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainProfileView.swift; sourceTree = "<group>"; };
+		97FB6A382BD07214005E2012 /* petView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = petView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -205,6 +211,7 @@
 			isa = PBXGroup;
 			children = (
 				973FDBB22B7B289D00EFD785 /* profileView.swift */,
+				97FB6A342BD06338005E2012 /* mainProfileView.swift */,
 			);
 			path = profile;
 			sourceTree = "<group>";
@@ -231,6 +238,7 @@
 			children = (
 				973FDBB42B7B28E600EFD785 /* Authentification */,
 				971718D52B83E78E00C9FF1D /* Navigator */,
+				97FB6A372BD071F0005E2012 /* pet */,
 				973FDBB12B7B288A00EFD785 /* profile */,
 				971718D22B83E70100C9FF1D /* Map */,
 				971718CE2B83E6B300C9FF1D /* Home */,
@@ -258,6 +266,7 @@
 				976394792B8AAED1003EF2BC /* navigationButton.swift */,
 				9763947B2B8ABE68003EF2BC /* petSelector.swift */,
 				97DB6A782B95975900544DFB /* locationDetails.swift */,
+				97CBADE22BACC7410094555C /* MenuView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -268,6 +277,14 @@
 				973FDBC72B7B2AD900EFD785 /* userData.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		97FB6A372BD071F0005E2012 /* pet */ = {
+			isa = PBXGroup;
+			children = (
+				97FB6A382BD07214005E2012 /* petView.swift */,
+			);
+			path = pet;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -374,6 +391,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97FB6A392BD07214005E2012 /* petView.swift in Sources */,
 				973FDBC52B7B2A8300EFD785 /* signButton.swift in Sources */,
 				973FDBC12B7B2A4000EFD785 /* inputView.swift in Sources */,
 				973FDBB82B7B292C00EFD785 /* authViewModel.swift in Sources */,
@@ -387,6 +405,8 @@
 				971718D12B83E6E800C9FF1D /* HomePage.swift in Sources */,
 				9753C0662B7F302C00CFA486 /* passwordContent.swift in Sources */,
 				971718D72B83E7BB00C9FF1D /* NavigatorView.swift in Sources */,
+				97FB6A352BD06338005E2012 /* mainProfileView.swift in Sources */,
+				97CBADE32BACC7410094555C /* MenuView.swift in Sources */,
 				9763947A2B8AAED1003EF2BC /* navigationButton.swift in Sources */,
 				973FDBBB2B7B295400EFD785 /* LoginPage.swift in Sources */,
 				973FDBC82B7B2AD900EFD785 /* userData.swift in Sources */,

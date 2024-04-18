@@ -11,17 +11,32 @@ struct HomePage: View {
     @EnvironmentObject var viewModel : AuthViewModel
     @Binding var selection : Int
     @Binding var searchItem : String
+    @State var showMenu = false
+    @State var showingProfile = false
+    @State var showingPet = false
     
     var body: some View {
         //if let user = viewModel.currentUser {
+        let dragGesture = DragGesture()
+            .onEnded {
+                if $0.translation.width > 100 {
+                    withAnimation {
+                        self.showMenu = false
+                    }
+                }
+            }
+            if showingProfile == true {
+                mainProfileView(showProfile: $showingProfile)
+            } else if showingPet == true {
+                petView(showingPet: $showingPet)
+            } else {
             ZStack {
                 VStack {
-                    Text("Home")
-                        .padding(.top, 40)
-                        .padding(.bottom, 0.45)
-                        .padding(.trailing, UIScreen.main.bounds.width - 130)
-                        .foregroundColor(.black)
-                    ZStack {
+                        Text("Home")
+                            .padding(.top, 40)
+                            .padding(.bottom, 0.45)
+                            .padding(.trailing, UIScreen.main.bounds.width - 130)
+                            .foregroundColor(.black)
                         HStack {
                             VStack() {
                                 //Text("Hi \(user.firstName),")
@@ -41,7 +56,6 @@ struct HomePage: View {
                                 .clipShape(Circle())
                                 .padding(.trailing, 30)
                         }
-                    }
                     petSelector()
                         .padding(.bottom, 10)
                     HStack(spacing: 20) {
@@ -54,7 +68,31 @@ struct HomePage: View {
                     }
                     Spacer()
                 }
+                GeometryReader { geometry in
+                    ZStack(alignment: .leading) {
+                        if self.showMenu {
+                            MenuView(showingProfile: $showingProfile, showingPet: $showingPet)
+                                .frame(width: geometry.size.width/2)
+                                .offset(x: self.showMenu ? geometry.size.width/2 : 0)
+                            // animation
+                                .transition(.move(edge: .trailing))
+                        }
+                    }
+                    Button {
+                        withAnimation {
+                            self.showMenu.toggle()
+                        }
+                    } label: {
+                        Image(systemName: "line.horizontal.3")
+                            .imageScale(.large)
+                            .foregroundColor(showMenu ? .gray : .black)
+                    }
+                    .padding()
+                    .padding(.leading, geometry.size.width - 70)
+                }
+                
             }
+            .gesture(dragGesture)
             .background(
                 GeometryReader { geometry in
                     ZStack {
@@ -69,7 +107,7 @@ struct HomePage: View {
                     }
                 }
             )
-        //}
+        }
     }
 }
 

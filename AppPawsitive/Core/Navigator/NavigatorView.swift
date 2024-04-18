@@ -37,15 +37,6 @@ struct NavigatorView: View {
                     }
                 }
                 .tag(1)
-            profileView()
-                .font(.title)
-                .tabItem {
-                    VStack {
-                        Image(systemName: "person.crop.circle.fill")
-                        Text("Profile")
-                    }
-                }
-                .tag(2)
         }
         .border(Color.clear, width: 0)
     }

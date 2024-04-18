@@ -15,9 +15,9 @@ struct locationDetails: View {
     @State private var lookAround : MKLookAroundScene?
     
     var body: some View {
-        Spacer()
         VStack {
             Spacer()
+                .padding(.vertical)
             HStack {
                 VStack (alignment: .leading) {
                     // name of location
@@ -46,7 +46,6 @@ struct locationDetails: View {
                 }
             }
             .padding(.horizontal)
-            .padding(.vertical)
             
             if let scene = lookAround {
                 LookAroundPreview(initialScene: scene)
@@ -55,7 +54,11 @@ struct locationDetails: View {
                     .padding()
             } else {
                 ContentUnavailableView("No preview available", systemImage: "eye.slash")
+                    .frame(height: 200)
+                    .cornerRadius(12)
+                    .padding()
             }
+            Spacer()
             HStack {
                 // add label to open in maps natively
                 Button{
@@ -79,6 +82,7 @@ struct locationDetails: View {
                     }
                 }
             }
+            Spacer()
                 
         }
         .onAppear {
